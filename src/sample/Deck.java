@@ -4,46 +4,29 @@ import java.util.*;
 
 public class Deck {
 
+    static List<String> suit = new LinkedList<>();
     public static List<Card> deck_of_cards = new LinkedList<>();
 
     static void new_deck()
     {
-        String suit="";
-        for (int i=0;i<4;i++)
+        suit.add("spades");
+        suit.add("hearts");
+        suit.add("clubs");
+        suit.add("diamonds");
+
+        //iterating through all suits
+        for (String s:suit)
         {
-            switch (i)
-            {
-                case 0:
-                {
-                    suit="diamonds";
-                    break;
-                }
-                case 1:
-                {
-                    suit="spades";
-                    break;
-                }
-                case 2:
-                {
-                    suit="hearts";
-                    break;
-                }
-                case 3:
-                {
-                    suit="clubs";
-                    break;
-                }
-            }
             //array of cards in same suit
             Card[] c = new Card[13];
             for (int j = 2; j < 11; j++) {
-                c[j-2] = new Card(""+j,suit);
+                c[j-2] = new Card(""+j,s);
                 deck_of_cards.add(c[j-2]);
             }
-            c[9]=new Card("jack",suit);
-            c[10]=new Card("queen",suit);
-            c[11]=new Card("king",suit);
-            c[12]=new Card("ace",suit);
+            c[9]=new Card("jack",s);
+            c[10]=new Card("queen",s);
+            c[11]=new Card("king",s);
+            c[12]=new Card("ace",s);
             c[9].setValue("10");
             c[10].setValue("10");
             c[11].setValue("10");

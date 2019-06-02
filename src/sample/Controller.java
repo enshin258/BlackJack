@@ -1,180 +1,146 @@
 package sample;
 
 
-import javafx.animation.TranslateTransition;
+import javafx.application.Application;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
+
     @FXML Pane pane;
     @FXML Text title;
     @FXML StackPane deck_place;
-    @FXML HBox player_place;
-    @FXML HBox dealer_place;
+    @FXML HBox user_hand;
+    @FXML HBox dealer_hand;
     @FXML Button hit;
     @FXML Button pass;
-    @FXML Text player_score_place;
-    @FXML Text dealer_score_place;
+    @FXML Button restart_button;
+    @FXML ToggleButton debug;
+    @FXML Text user_counter;
+    @FXML Text dealer_counter;
 
-    boolean ended_move=false;
-
-
-
-    public void getNewCard(String who)
+    Player user;
+    Player dealer;
+    
+    public void end_game()
     {
-        int result=0;
-        int old_points=0;
-        int new_points=0;
+        hit.setDisable(true);
+        pass.setDisable(true);
+        restart_button.setOpacity(1);
+        restart_button.setDisable(false);
+        restart_button.setOnMouseClicked(event -> {
+            title.setText("BlackJack");
+            restart_button.setOpacity(0);
+            restart_button.setDisable(true);
+            user.setPoints(0);
+            dealer.setPoints(0);
+            user.points_counter.setText("0");
+            dealer.points_counter.setText("0");
 
-        if(who.equals("dealer"))
-        {
-            //getting card from deck
-            Node temp = deck_place.getChildren().get(deck_place.getChildren().size()-1);
+            user_hand.getChildren().clear();
+            dealer_hand.getChildren().clear();
+            user.hand.getChildren().removeAll();
+            dealer.hand.getChildren().removeAll();
 
-            //remove top card
-            deck_place.getChildren().remove(temp);
+            deck_place.getChildren().clear();
+            deck_place.getChildren().removeAll();
 
-            //add that card to hand
-            dealer_place.getChildren().add(temp);
+            Deck.new_deck();
 
-            //calculating value
-            String old_points_dealer_s = dealer_score_place.getText();
-            String new_card_points_s = Deck.getDeck_of_cards().get(Deck.getDeck_of_cards().size()-1).getValue();
+            //adding deck on table
+            for (Card c:Deck.getDeck_of_cards()) {
+                deck_place.getChildren().add(c.getCard());
+            }
 
-            old_points = Integer.parseInt(old_points_dealer_s);
-            new_points = Integer.parseInt(new_card_points_s);
+            Player.setDeck_place(deck_place);
 
-            //calculating result
-            result=old_points+new_points;
-            dealer_score_place.setText("" + result);
-            Deck.getDeck_of_cards().remove(Deck.getDeck_of_cards().size()-1);
 
-        }
-        else if(who.equals("player"))
-        {
-            Node temp = deck_place.getChildren().get(deck_place.getChildren().size()-1);
-            //remove top card
-            deck_place.getChildren().remove(temp);
-            //add that card to hand
-            player_place.getChildren().add(temp);
-            //calculating value
-            String old_points_player_s = player_score_place.getText();
-            String new_card_points_s = Deck.getDeck_of_cards().get(Deck.getDeck_of_cards().size()-1).getValue();
+            hit.setDisable(false);
+            pass.setDisable(false);
 
-            old_points = Integer.parseInt(old_points_player_s);
-            new_points = Integer.parseInt(new_card_points_s);
+            dealer.getNewCard();
+            user.getNewCard();
+            user.getNewCard();
 
-            result=old_points+new_points;
-            player_score_place.setText("" + result);
-            Deck.getDeck_of_cards().remove(Deck.getDeck_of_cards().size()-1);
-
-        }
+        });
     }
-    public int getPoints(String who)
-    {
-        if(who.equals("dealer"))
-        {
-            int result;
-            String result_s;
-            result_s=dealer_score_place.getText();
-            result=Integer.parseInt(result_s);
-            return result;
-        }
-        else if(who.equals("player"))
-        {
-            int result;
-            String result_s;
-            result_s=player_score_place.getText();
-            result=Integer.parseInt(result_s);
-            return result;
-        }
-        return 0;
-    }
-
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         //creating new deck
         Deck.new_deck();
+
         //adding deck on table
         for (Card c:Deck.getDeck_of_cards()) {
             deck_place.getChildren().add(c.getCard());
         }
 
-        //hiding deck
-        StackPane hider = new StackPane();
-        Rectangle r = new Rectangle();
-        ImageView image = new ImageView("graphics/single_cards/back_of_card.png");
-        image.setRotate(90);
-        hider.getChildren().addAll(r,image);
-        hider.setTranslateX(1510);
-        hider.setTranslateY(370);
-        pane.getChildren().add(hider);
 
+        Player.setDeck_place(deck_place);
+        dealer = new Player("dealer",dealer_hand,dealer_counter);
+        user = new Player("user",user_hand,user_counter);
         //starting dealer
 
-        getNewCard("dealer");
-        getNewCard("player");
-        getNewCard("player");
+        dealer.getNewCard();
+        user.getNewCard();
+        user.getNewCard();
 
         hit.setOnMouseClicked(event ->
         {
-            getNewCard("player");
+            user.getNewCard();
 
-            if(getPoints("player")>21)
+            if(user.getPoints()>21)
             {
-                title.setText("YOU LOOSE :(");
+                title.setText("You Loose :(");
+                end_game();
             }
 
         });
 
         pass.setOnMouseClicked(event ->
         {
-            while (getPoints("dealer")<16)
+            while (dealer.getPoints()<16 || dealer.points<user.points)
             {
-                getNewCard("dealer");
-
-                if(getPoints("dealer")>21)
+                dealer.getNewCard();
+                if(dealer.getPoints()>21)
                 {
-                    title.setText("YOU WIN :)");
+                    title.setText("You Win! :)");
+                    end_game();
+                    break;
+                }
+                else if(dealer.getPoints()>user.getPoints())
+                {
+                    title.setText("You Loose :(");
+                    end_game();
+                    break;
+                }
+                else
+                {
+                    title.setText("You Win! :)");
+                    end_game();
                     break;
                 }
             }
-
-            if(getPoints("dealer")>getPoints("player"))
-            {
-                title.setText("YOU LOOSE :(");
-
-            }
-            else
-            {
-                title.setText("YOU WIN :)");
-
-            }
-
         });
-
-
-
-
-
-
-
-        }
-
+    }
 }
 
 
