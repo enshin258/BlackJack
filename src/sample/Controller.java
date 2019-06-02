@@ -32,7 +32,7 @@ public class Controller implements Initializable {
     @FXML Button hit;
     @FXML Button pass;
     @FXML Button restart_button;
-    @FXML ToggleButton debug;
+    @FXML Button debug;
     @FXML Text user_counter;
     @FXML Text dealer_counter;
 
@@ -82,6 +82,22 @@ public class Controller implements Initializable {
         });
     }
 
+    public void debug_button()
+    {
+        Card hider = new Card("back","card");
+        hider.getCard().setRotate(90);
+        hider.getCard().setTranslateX(deck_place.getLayoutX()+20);
+        hider.getCard().setTranslateY(deck_place.getLayoutY()+30);
+        pane.getChildren().add(hider.getCard());
+
+        debug.setOnMouseClicked(event ->
+        {
+            hider.getCard().setVisible(!hider.getCard().isVisible());
+        });
+
+    }
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -92,6 +108,8 @@ public class Controller implements Initializable {
         for (Card c:Deck.getDeck_of_cards()) {
             deck_place.getChildren().add(c.getCard());
         }
+
+        debug_button();
 
 
         Player.setDeck_place(deck_place);
