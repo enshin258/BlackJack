@@ -121,6 +121,12 @@ public class Controller implements Initializable {
         user.getNewCard();
         user.getNewCard();
 
+        if(user.points==21)
+        {
+            title.setText("You Win! :)");
+            end_game();
+        }
+
         hit.setOnMouseClicked(event ->
         {
             user.getNewCard();
@@ -135,28 +141,26 @@ public class Controller implements Initializable {
 
         pass.setOnMouseClicked(event ->
         {
-            while (dealer.getPoints()<16 || dealer.points<user.points)
+            while (dealer.getPoints()<16 || dealer.points < user.points)
             {
                 dealer.getNewCard();
+            }
                 if(dealer.getPoints()>21)
                 {
                     title.setText("You Win! :)");
                     end_game();
-                    break;
                 }
                 else if(dealer.getPoints()>user.getPoints())
                 {
                     title.setText("You Loose :(");
                     end_game();
-                    break;
                 }
                 else
                 {
                     title.setText("You Win! :)");
                     end_game();
-                    break;
                 }
-            }
+
         });
     }
 }
