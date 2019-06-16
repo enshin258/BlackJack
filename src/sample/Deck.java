@@ -3,7 +3,6 @@ package sample;
 import java.util.*;
 
 public class Deck {
-
     static List<String> suit = new LinkedList<>();
     public static List<Card> deck_of_cards = new LinkedList<>();
 
@@ -40,7 +39,6 @@ public class Deck {
         System.out.println("deck created");
 
     }
-
 
     public static List<Card> getDeck_of_cards() {
         return deck_of_cards;
