@@ -34,11 +34,12 @@ public class Controller implements Initializable {
 
     public enum result {win,loose;}
 
-    public void newGame() {
+    void newGame() {
 
         //clear points
         user.setPoints(0);
         dealer.setPoints(0);
+
         //clear counters
         user.points_counter.setText("0");
         dealer.points_counter.setText("0");
@@ -48,7 +49,6 @@ public class Controller implements Initializable {
         dealer_hand.getChildren().clear();
         user.hand.getChildren().removeAll();
         dealer.hand.getChildren().removeAll();
-
 
         //create new deck
         deck_place.getChildren().clear();
@@ -61,10 +61,9 @@ public class Controller implements Initializable {
         }
 
         Player.setDeck_place(deck_place);
-
+        //enable button again
         hit.setDisable(false);
         pass.setDisable(false);
-        DebugMode();
         //first round
         dealer.getNewCard();
         user.getNewCard();
@@ -73,7 +72,7 @@ public class Controller implements Initializable {
 
     }
 
-    public void endGame(result r)
+    void endGame(result r)
     {
         //block hit and pass button
         hit.setDisable(true);
@@ -115,9 +114,9 @@ public class Controller implements Initializable {
             stage.close();
         }
     }
-
-    public void DebugMode()
+     void DebugMode()
     {
+
         Card hider = new Card("back","card");
         hider.getCard().setRotate(90);
         hider.getCard().setTranslateX(deck_place.getLayoutX()+20);
@@ -140,13 +139,17 @@ public class Controller implements Initializable {
         Player.setDeck_place(deck_place);
         dealer = new Player("dealer",dealer_hand,dealer_counter);
         user = new Player("user",user_hand,user_counter);
-
+        DebugMode();
         newGame();
 
         //check if on start is 21 points (in this implementation ace is always for 11 points
         if(user.points==21)
         {
             endGame(result.win);
+        }
+        if(user.points>21)
+        {
+            endGame(result.loose);
         }
 
         hit.setOnMouseClicked(event ->
@@ -184,7 +187,6 @@ public class Controller implements Initializable {
                 {
                     endGame(result.win);
                 }
-
         });
     }
 }

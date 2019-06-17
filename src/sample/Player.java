@@ -4,9 +4,15 @@ import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
 import javafx.scene.Node;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import javafx.scene.layout.HBox;
 import javafx.util.Duration;
+
+import java.io.File;
+import java.nio.file.Paths;
 
 
 public class Player {
@@ -37,7 +43,11 @@ public class Player {
 
         //add that card to hand
         hand.getChildren().add(temp);
-
+        //play sound;
+        String path = "src/sounds/cardSlide.wav";
+        Media media = new Media(new File(path).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
         //calculating value
         String new_card_points_s = Deck.getDeck_of_cards().get(Deck.getDeck_of_cards().size()-1).getValue();
 

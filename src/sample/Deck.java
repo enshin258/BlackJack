@@ -1,5 +1,11 @@
 package sample;
 
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
+import java.io.File;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class Deck {
@@ -36,6 +42,11 @@ public class Deck {
             deck_of_cards.add(c[12]);
         }
         Collections.shuffle(deck_of_cards);
+        //play sound
+        String path = "src/sounds/shuffle.wav";
+        Media media = new Media(new File(path).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
         System.out.println("deck created");
 
     }
