@@ -15,6 +15,11 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * this class contains all logic of program
+ *
+ */
+
 public class Controller implements Initializable {
 
 
@@ -32,6 +37,9 @@ public class Controller implements Initializable {
     Player user;
     Player dealer;
 
+    /**
+     * enum for result of game
+     */
     public enum result {win,loose}
 
     /**
@@ -149,6 +157,11 @@ public class Controller implements Initializable {
         });
 
     }
+
+    /**
+     * used to run program
+     * this method create players and start new game
+     */
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

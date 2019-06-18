@@ -27,10 +27,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Main method where stage is created (window of program)
+ */
+
+
 public class Main extends Application {
 
     /**
-     *  Method set scene, based on .fxml file
+     * in start method, program create scene based on .fxml file
+     * @param primaryStage reference to starting default stage
+     * @throws Exception
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -42,6 +49,10 @@ public class Main extends Application {
         primaryStage.show();
     }
 
+    /**
+     * launch a standalone application
+     * @param args get optional arguments (running from console)
+     */
     public static void main(String[] args) {
         launch(args);
     }
