@@ -1,19 +1,28 @@
 package sample;
 
-import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 import java.io.File;
-import java.nio.file.Paths;
 import java.util.*;
 
+/**
+ * Card deck storage class
+ */
 public class Deck {
-    static List<String> suit = new LinkedList<>();
-    public static List<Card> deck_of_cards = new LinkedList<>();
 
-    static void new_deck()
+    static List<String> suit = new LinkedList<>();
+    public static List<Card> deck_of_cards;
+
+    /**
+     * Method that create a new deck of cards
+     * Its iterate through all suits (clubs, diamonds, hearts , spades) and create cards based on values and suits
+     * @see Card for more information
+     * After creating deck, cards are shuffled using Collections.shuffle()
+     */
+    static void newDeck()
     {
+        deck_of_cards = new LinkedList<>();
         suit.add("spades");
         suit.add("hearts");
         suit.add("clubs");
@@ -41,6 +50,7 @@ public class Deck {
             deck_of_cards.add(c[11]);
             deck_of_cards.add(c[12]);
         }
+        //shuffle deck
         Collections.shuffle(deck_of_cards);
         //play sound
         String path = "src/sounds/shuffle.wav";
@@ -51,7 +61,7 @@ public class Deck {
 
     }
 
-    public static List<Card> getDeck_of_cards() {
+    public static List<Card> getDeckOfCards() {
         return deck_of_cards;
     }
 }
