@@ -9,11 +9,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane id="pane" fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-border-width: 16; -fx-border-color: rgb(55,36,19); -fx-background-color: #004b00;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<Pane id="pane" fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-border-width: 16; -fx-border-color: rgb(55,36,19); -fx-background-color: #004b00;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.GameController">
     <children>
-        <Text fx:id="title" layoutX="752.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BlackJack" textAlignment="JUSTIFY">
+        <Text fx:id="title" layoutX="753.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BlackJack" textAlignment="JUSTIFY">
             <font>
-                <Font name="System Bold Italic" size="96.0" />
+                <Font name="System Bold" size="96.0" />
             </font>
             <fill>
                 <LinearGradient endX="0.5048543689320388" endY="0.9271844660194175" startX="0.48058252427184467" startY="0.41262135922330095">
@@ -29,27 +29,38 @@
         <HBox fx:id="dealer_hand" alignment="CENTER" layoutX="160.0" layoutY="120.0" prefHeight="300.0" prefWidth="1600.0" style="-fx-background-color: green; -fx-border-color: #432518; -fx-border-width: 5;" />
         <Button fx:id="hit" layoutX="650.0" layoutY="930.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" text="HIT">
             <font>
-                <Font size="50.0" />
+                <Font name="Impact" size="45.0" />
             </font>
         </Button>
         <Button fx:id="pass" layoutX="1050.0" layoutY="930.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" text="PASS">
             <font>
-                <Font size="50.0" />
+                <Font name="Impact" size="45.0" />
             </font>
         </Button>
         <Text fx:id="dealer_counter" layoutX="903.0" layoutY="486.0" stroke="#855d22" strokeLineCap="BUTT" strokeType="OUTSIDE" text="0" textAlignment="CENTER" wrappingWidth="150.0">
             <font>
-                <Font name="Harlow Solid Italic" size="60.0" />
+                <Font name="Impact" size="60.0" />
             </font>
         </Text>
         <Text fx:id="user_counter" layoutX="900.0" layoutY="580.0" stroke="#855d22" strokeLineCap="BUTT" strokeType="OUTSIDE" text="0" textAlignment="CENTER" wrappingWidth="150.0">
             <font>
-                <Font name="Harlow Solid Italic" size="60.0" />
+                <Font name="Impact" size="60.0" />
             </font>
         </Text>
-        <Button fx:id="debug_button" layoutX="1310.0" layoutY="440.0" mnemonicParsing="false" prefHeight="160.0" prefWidth="150.0" text="DEBUG MODE">
+        <Button fx:id="debug_button" layoutX="1259.0" layoutY="440.0" mnemonicParsing="false" prefHeight="160.0" prefWidth="200.0" text="DEBUG MODE">
          <font>
-            <Font name="System Bold" size="16.0" />
+            <Font name="Impact" size="30.0" />
          </font></Button>
+      <Text fx:id="moneyCounter" layoutX="226.0" layoutY="594.0" stroke="#855d22" strokeLineCap="BUTT" strokeType="OUTSIDE" text="0$" textAlignment="CENTER" wrappingWidth="150.0">
+         <font>
+            <Font name="Impact" size="60.0" />
+         </font>
+      </Text>
+      <Text layoutX="202.0" layoutY="468.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text layoutX="200.0" layoutY="515.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your money:" textAlignment="CENTER" wrappingWidth="210.67086791992188">
+         <font>
+            <Font name="Impact" size="40.0" />
+         </font>
+      </Text>
     </children>
 </Pane>

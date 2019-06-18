@@ -30,9 +30,8 @@ import javafx.stage.Stage;
 /**
  * Main method where stage is created (window of program)
  */
-
-
 public class Main extends Application {
+    public static Stage mainStage;
 
     /**
      * in start method, program create scene based on .fxml file
@@ -41,12 +40,13 @@ public class Main extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("BlackJack");
-        primaryStage.setScene(new Scene(root, 1920, 1000));
-        primaryStage.setMaximized(true);
-        primaryStage.setFullScreen(true);
-        primaryStage.show();
+
+        mainStage=primaryStage;
+        Parent menu = FXMLLoader.load(getClass().getResource("menu.fxml"));
+        mainStage.setTitle("BlackJack");
+        mainStage.setScene(new Scene(menu, 900, 600));
+        mainStage.show();
+
     }
 
     /**

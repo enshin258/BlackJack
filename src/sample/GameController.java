@@ -1,5 +1,6 @@
 package sample;
 
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -20,7 +21,7 @@ import java.util.ResourceBundle;
  *
  */
 
-public class Controller implements Initializable {
+public class GameController implements Initializable {
 
 
     @FXML public Pane pane;
@@ -32,6 +33,7 @@ public class Controller implements Initializable {
     @FXML public Button debug_button;
     @FXML public Text user_counter;
     @FXML public Text dealer_counter;
+    @FXML public Text moneyCounter;
 
     //player and dealer
     Player user;
@@ -41,6 +43,11 @@ public class Controller implements Initializable {
      * enum for result of game
      */
     public enum result {win,loose}
+
+    /**
+     * actual money of player
+     */
+    int money=0;
 
     /**
      * Method used at start of new game
@@ -95,45 +102,63 @@ public class Controller implements Initializable {
         debug_button.setDisable(true);
 
         //set reference to main stage
-
-
         Stage stage =(Stage)deck_place.getScene().getWindow();
-
 
         //create pop up window
         Alert alert = new Alert(Alert.AlertType.NONE);
         alert.setTitle("Game ended");
         alert.initOwner(stage);
-        alert.setX(400);
+        alert.setX(500);
         alert.setY(420);
+
+        //buttons
+        ButtonType restart_button = new ButtonType("Restart");
+        ButtonType close_button = new ButtonType("End");
 
         //set text based on result
         if(r==result.win)
         {
             alert.setHeaderText("***** YOU WIN !!! *****");
+            money=money*2;
+            moneyCounter.setText(money + "$");
         }
         else
         {
             alert.setHeaderText("***** YOU LOOSE !!! *****");
+            money=money/2;
+            moneyCounter.setText(money + "$");
         }
-        alert.setContentText("Restart game?");
-
-        //adding button
-        ButtonType restart_button = new ButtonType("Yes");
-        ButtonType close_button = new ButtonType("No");
-        alert.getButtonTypes().setAll(restart_button,close_button);
-        Optional<ButtonType> result = alert.showAndWait();
-
-        if (result.get() == restart_button)
+        //no money
+        if(money==0)
         {
-            alert.close();
-            newGame();
+            alert.setAlertType(Alert.AlertType.WARNING);
+            alert.setContentText("NO MONEY !!!");
+            alert.getButtonTypes().setAll(close_button);
+            Optional<ButtonType> result = alert.showAndWait();
+            if(result.get()==close_button)
+            {
+                alert.close();
+                stage.close();
+            }
         }
-        else if(result.get() == close_button)
+        else
         {
-            alert.close();
-            stage.close();
+            alert.setContentText("Play again?");
+            alert.getButtonTypes().setAll(restart_button,close_button);
+            Optional<ButtonType> result = alert.showAndWait();
+
+            if (result.get() == restart_button)
+            {
+                alert.close();
+                newGame();
+            }
+            else if(result.get() == close_button)
+            {
+                alert.close();
+                stage.close();
+            }
         }
+
     }
 
     /**
@@ -174,8 +199,11 @@ public class Controller implements Initializable {
         user = new Player("user",user_hand,user_counter);
 
         //start new game
-        DebugMode();
         newGame();
+        DebugMode();
+        moneyCounter.setText(MenuController.money + "$");
+        money=MenuController.money;
+
 
         //on click, add new card for player and check points
         hit.setOnAction(event ->
