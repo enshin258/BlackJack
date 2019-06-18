@@ -17,8 +17,8 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
- * this class contains all logic of program
- *
+ * Contains logic of game,
+ * here is programed behavior of buttons and dealer AI
  */
 
 public class GameController implements Initializable {

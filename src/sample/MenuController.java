@@ -12,8 +12,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * contains logic of menu window
- * using slider can adjust starting money
+ * Contains logic of menu window,
+ * using slider can adjust starting money and start new game clicking button
  */
 
 public class MenuController implements Initializable {
