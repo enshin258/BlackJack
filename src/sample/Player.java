@@ -2,6 +2,7 @@ package sample;
 
 import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -36,6 +37,7 @@ public class Player {
      */
     public synchronized void getNewCard()
     {
+
         //get top card from deck
         Card drawnCard = Deck.getDeckOfCards().get(Deck.getDeckOfCards().size()-1);
 

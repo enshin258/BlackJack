@@ -28,6 +28,10 @@ public class MenuController implements Initializable {
     public static int money=0;
 
 
+    /**
+     * implements behavior of slider and start button
+     * after setting starting money, clicking on new game button cause to switch scenes between menu and game
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         valueSlider.valueProperty().addListener((observable, oldValue, newValue) ->
