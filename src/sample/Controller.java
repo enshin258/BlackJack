@@ -95,7 +95,10 @@ public class Controller implements Initializable {
         debug_button.setDisable(true);
 
         //set reference to main stage
-        Stage stage =(Stage)pane.getScene().getWindow();
+
+
+        Stage stage =(Stage)deck_place.getScene().getWindow();
+
 
         //create pop up window
         Alert alert = new Alert(Alert.AlertType.NONE);
@@ -115,7 +118,7 @@ public class Controller implements Initializable {
         }
         alert.setContentText("Restart game?");
 
-        //adding buttond
+        //adding button
         ButtonType restart_button = new ButtonType("Yes");
         ButtonType close_button = new ButtonType("No");
         alert.getButtonTypes().setAll(restart_button,close_button);
@@ -174,18 +177,8 @@ public class Controller implements Initializable {
         DebugMode();
         newGame();
 
-        //check if on start is 21 points (in this implementation ace is always for 11 points
-        if(user.getPoints()==21)
-        {
-            endGame(result.win);
-        }
-        else if(user.getPoints()>21)
-        {
-            endGame(result.loose);
-        }
-
         //on click, add new card for player and check points
-        hit.setOnMouseClicked(event ->
+        hit.setOnAction(event ->
         {
             user.getNewCard();
             if(user.getPoints()>=21)
@@ -203,9 +196,9 @@ public class Controller implements Initializable {
         });
 
         //start dealer moves, and compare points
-        pass.setOnMouseClicked(event ->
+        pass.setOnAction(event ->
         {
-            while (dealer.getPoints()<16 || dealer.points <= user.points)
+            while (dealer.getPoints()<=user.getPoints())
             {
                 dealer.getNewCard();
             }
