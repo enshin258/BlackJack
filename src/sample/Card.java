@@ -8,9 +8,9 @@ import javafx.scene.shape.Rectangle;
 /**
  * Class representing single Card
  * The Card consits of
- * - card -> physical representation of Card
- * - value -> storing value of card
- * - suit -> storing suit of card
+ * - card - physical representation of Card
+ * - value - storing value of card
+ * - suit - storing suit of card
  *
  */
 public class Card {
@@ -22,9 +22,9 @@ public class Card {
     /**
      * In constructor , the card receives a physical representation, and the graphics are loaded
      * based on
-     * @param suit
+     * @param suit suit of card
      * and
-     * @param value
+     * @param value value of card
      */
 
     public Card(String value, String suit) {

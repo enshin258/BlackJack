@@ -3,9 +3,9 @@
  * BlackJack game is a card game in which the player's task is to get the score closest to 21.
  *
  * The game uses a standard deck of cards, the cards have certain values:
- * Cards from 2 to 10 -> value such as the number on the card
+ * Cards from 2 to 10 - value such as the number on the card
  * Figures: Jack, lady, king - value 10
- * Aces -> value 11
+ * Aces - value 11
  *
  * The game begins with one card being dealt to the dealer and two cards being dealt to the player.
  * The player can either draw a card (HIT) or fold (PASS) at any given moment.
