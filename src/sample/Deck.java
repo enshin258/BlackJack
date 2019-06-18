@@ -11,8 +11,8 @@ import java.util.*;
  */
 public class Deck {
 
-    static List<String> suit = new LinkedList<>();
-    public static List<Card> deck_of_cards;
+    static Vector<String> suit;
+    static Vector<Card> deckOfCards;
 
     /**
      * Method that create a new deck of cards
@@ -22,12 +22,13 @@ public class Deck {
      */
     static void newDeck()
     {
-        deck_of_cards = new LinkedList<>();
+        suit = new Vector<>();
         suit.add("spades");
         suit.add("hearts");
         suit.add("clubs");
         suit.add("diamonds");
 
+        deckOfCards = new Vector<>();
         //iterating through all suits
         for (String s:suit)
         {
@@ -35,7 +36,7 @@ public class Deck {
             Card[] c = new Card[13];
             for (int j = 2; j < 11; j++) {
                 c[j-2] = new Card(""+j,s);
-                deck_of_cards.add(c[j-2]);
+                deckOfCards.add(c[j-2]);
             }
             c[9]=new Card("jack",s);
             c[10]=new Card("queen",s);
@@ -45,13 +46,13 @@ public class Deck {
             c[10].setValue("10");
             c[11].setValue("10");
             c[12].setValue("11");
-            deck_of_cards.add(c[9]);
-            deck_of_cards.add(c[10]);
-            deck_of_cards.add(c[11]);
-            deck_of_cards.add(c[12]);
+            deckOfCards.add(c[9]);
+            deckOfCards.add(c[10]);
+            deckOfCards.add(c[11]);
+            deckOfCards.add(c[12]);
         }
         //shuffle deck
-        Collections.shuffle(deck_of_cards);
+        Collections.shuffle(deckOfCards);
         //play sound
         String path = "src/sounds/shuffle.wav";
         Media media = new Media(new File(path).toURI().toString());
@@ -62,6 +63,6 @@ public class Deck {
     }
 
     public static List<Card> getDeckOfCards() {
-        return deck_of_cards;
+        return deckOfCards;
     }
 }

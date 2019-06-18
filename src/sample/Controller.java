@@ -70,7 +70,7 @@ public class Controller implements Initializable {
             deck_place.getChildren().add(c.getCard());
         }
 
-        Player.setDeck_place(deck_place);
+        Player.setDeckPlace(deck_place);
         //enable button again
         hit.setDisable(false);
         pass.setDisable(false);
@@ -79,7 +79,6 @@ public class Controller implements Initializable {
         dealer.getNewCard();
         user.getNewCard();
         user.getNewCard();
-
 
     }
 
@@ -167,7 +166,7 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         //creating players
-        Player.setDeck_place(deck_place);
+        Player.setDeckPlace(deck_place);
         dealer = new Player("dealer",dealer_hand,dealer_counter);
         user = new Player("user",user_hand,user_counter);
 
