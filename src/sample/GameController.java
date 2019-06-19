@@ -34,10 +34,14 @@ public class GameController implements Initializable {
     @FXML public Text user_counter;
     @FXML public Text dealer_counter;
     @FXML public Text moneyCounter;
+    @FXML public Text historyPlace;
 
     //player and dealer
     Player user;
     Player dealer;
+    //history of games
+    int counter=1;
+    String history="";
 
     /**
      * enum for result of game
@@ -115,18 +119,29 @@ public class GameController implements Initializable {
         ButtonType restart_button = new ButtonType("Restart");
         ButtonType close_button = new ButtonType("End");
 
+
         //set text based on result
         if(r==result.win)
         {
             alert.setHeaderText("***** YOU WIN !!! *****");
             money=money*2;
             moneyCounter.setText(money + "$");
+            history += counter + ".WIN " + user.getPoints() + " : " + dealer.getPoints() + "\n";
+            historyPlace.setText(history);
+            counter++;
         }
         else
         {
             alert.setHeaderText("***** YOU LOOSE !!! *****");
             money=money/2;
             moneyCounter.setText(money + "$");
+            history += counter + ".LOOSE " + user.getPoints() + " : " + dealer.getPoints() + "\n";
+            historyPlace.setText(history);
+            counter++;
+        }
+        if(counter%15==0)
+        {
+            history="";
         }
         //no money
         if(money==0)

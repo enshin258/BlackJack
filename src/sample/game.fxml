@@ -25,8 +25,8 @@
             </fill>
         </Text>
         <StackPane fx:id="deck_place" layoutX="1510.0" layoutY="370.0" prefHeight="300.0" prefWidth="200.0" rotate="90.0" style="-fx-background-color: #064910; -fx-border: #432518; -fx-border-width: 12;" />
-        <HBox fx:id="user_hand" alignment="CENTER" layoutX="160.0" layoutY="620.0" prefHeight="300.0" prefWidth="1600.0" style="-fx-background-color: green; -fx-border-color: #432518; -fx-border-width: 5;" />
-        <HBox fx:id="dealer_hand" alignment="CENTER" layoutX="160.0" layoutY="120.0" prefHeight="300.0" prefWidth="1600.0" style="-fx-background-color: green; -fx-border-color: #432518; -fx-border-width: 5;" />
+        <HBox fx:id="user_hand" alignment="CENTER" layoutX="424.0" layoutY="620.0" prefHeight="300.0" prefWidth="1336.0" style="-fx-background-color: green; -fx-border-color: #432518; -fx-border-width: 5;" />
+        <HBox fx:id="dealer_hand" alignment="CENTER" layoutX="412.0" layoutY="120.0" prefHeight="300.0" prefWidth="1348.0" style="-fx-background-color: green; -fx-border-color: #432518; -fx-border-width: 5;" />
         <Button fx:id="hit" layoutX="650.0" layoutY="930.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" text="HIT">
             <font>
                 <Font name="Impact" size="45.0" />
@@ -51,16 +51,29 @@
          <font>
             <Font name="Impact" size="30.0" />
          </font></Button>
-      <Text fx:id="moneyCounter" layoutX="226.0" layoutY="594.0" stroke="#855d22" strokeLineCap="BUTT" strokeType="OUTSIDE" text="0$" textAlignment="CENTER" wrappingWidth="150.0">
+      <Text fx:id="moneyCounter" layoutX="453.0" layoutY="598.0" stroke="#855d22" strokeLineCap="BUTT" strokeType="OUTSIDE" text="0$" textAlignment="CENTER" wrappingWidth="150.0">
          <font>
             <Font name="Impact" size="60.0" />
          </font>
       </Text>
       <Text layoutX="202.0" layoutY="468.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-      <Text layoutX="200.0" layoutY="515.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your money:" textAlignment="CENTER" wrappingWidth="210.67086791992188">
+      <Text layoutX="414.0" layoutY="516.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your money:" textAlignment="CENTER" wrappingWidth="210.67086791992188">
          <font>
             <Font name="Impact" size="40.0" />
          </font>
       </Text>
+      <Text layoutX="68.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Game story" wrappingWidth="308.38671875">
+         <font>
+            <Font name="Impact" size="60.0" />
+         </font>
+      </Text>
+      <Pane fx:id="historyPane" disable="true" layoutX="36.0" layoutY="120.0" prefHeight="804.0" prefWidth="344.0" style="-fx-background-color: green; -fx-border-color: #b47a34; -fx-border-width: 5;">
+         <children>
+            <Text fx:id="historyPlace" layoutX="10.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="317.6708984375">
+               <font>
+                  <Font size="37.0" />
+               </font>
+            </Text>
+         </children></Pane>
     </children>
 </Pane>

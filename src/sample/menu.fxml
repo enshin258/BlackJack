@@ -28,7 +28,7 @@
             <Font name="Impact" size="40.0" />
          </font>
       </Button>
-      <Slider fx:id="valueSlider" blockIncrement="50.0" layoutX="100.0" layoutY="450.0" majorTickUnit="50.0" max="1000.0" minorTickCount="50" prefHeight="100.0" prefWidth="700.0" showTickLabels="true" showTickMarks="true" style="-fx-background-color: green; -fx-border-width: 5; -fx-border-color: #684022;" />
+      <Slider fx:id="valueSlider" blockIncrement="50.0" layoutX="100.0" layoutY="450.0" majorTickUnit="50.0" max="1000.0" minorTickCount="50" prefHeight="100.0" prefWidth="700.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" style="-fx-background-color: green; -fx-border-width: 5; -fx-border-color: #684022;" />
       <Text fx:id="moneyValue" layoutX="440.0" layoutY="425.0" stroke="#855d22" strokeLineCap="BUTT" strokeType="OUTSIDE" text="0$" textAlignment="CENTER" wrappingWidth="111.59374749660492">
          <font>
             <Font name="Impact" size="40.0" />
